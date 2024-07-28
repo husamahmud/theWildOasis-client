@@ -2,8 +2,8 @@ import React from 'react'
 import type { Metadata } from 'next'
 import { Josefin_Sans } from 'next/font/google'
 
-import Header from '@/_components/Header'
-import '@/_styles/globals.css'
+import Header from '@/components/Header'
+import '@/styles/globals.css'
 
 const josefin = Josefin_Sans({
   subsets: ['latin'],

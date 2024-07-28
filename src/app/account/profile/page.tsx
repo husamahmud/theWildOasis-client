@@ -1,4 +1,4 @@
-import SelectCountry from '@/_components/SelectCountry'
+import SelectCountry from '@/components/SelectCountry'
 
 export const metadata = {
   title: 'Profile',
