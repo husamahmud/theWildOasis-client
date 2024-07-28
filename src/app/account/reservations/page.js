@@ -1,11 +1,12 @@
-import ReservationCard from '../../_components/ReservationCard'
+import Link from 'next/link'
+
+import ReservationCard from '../../../_components/ReservationCard'
 
 export const metadata = {
   title: 'Reservations',
 }
 
 export default function Page() {
-  // CHANGE
   const bookings = []
 
   return (
@@ -17,9 +18,9 @@ export default function Page() {
       {bookings.length === 0 ? (
         <p className="text-lg">
           You have no reservations yet. Check out our{' '}
-          <a className="text-accent-500 underline" href="/cabins">
+          <Link className="text-accent-500 underline" href="/cabins">
             luxury cabins &rarr;
-          </a>
+          </Link>
         </p>
       ) : (
         <ul className="space-y-6">
