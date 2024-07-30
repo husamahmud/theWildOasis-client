@@ -1,5 +1,9 @@
+import Spinner from '@/components/Spinner'
+
 export default function Loading() {
   return (
-    <h1>Loading...</h1>
+    <div className="flex h-full items-center justify-center">
+      <Spinner />
+    </div>
   )
 }
