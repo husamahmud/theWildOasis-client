@@ -9,8 +9,8 @@ const nextConfig = {
         pathname: '/storage/v1/object/sign/**'
       }
     ]
-  },
-  output: 'export'
+  }
+  // output: 'export'
 }
 
 export default nextConfig
