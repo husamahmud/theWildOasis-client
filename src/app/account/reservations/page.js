@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import ReservationCard from '../../../components/ReservationCard'
+import ReservationCard from '../../_components/ReservationCard'
 
 export const metadata = {
   title: 'Reservations',

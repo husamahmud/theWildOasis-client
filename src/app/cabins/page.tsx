@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 
-import CabinsList from '@/components/CabinsList'
-import Spinner from '@/components/Spinner'
+import CabinsList from '@/app/_components/CabinsList'
+import Spinner from '@/app/_components/Spinner'
 
 export const metadata = {
   title: 'Cabins Area',

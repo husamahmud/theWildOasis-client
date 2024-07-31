@@ -1,5 +1,5 @@
-import CabinCard from '@/components/CabinCard'
-import { getCabins } from '@/lib/data-service'
+import CabinCard from '@/app/_components/CabinCard'
+import { getCabins } from '@/app/_lib/data-service'
 
 export default async function CabinsList() {
   const cabins: any = await getCabins()

@@ -1,5 +1,5 @@
 import React from 'react'
-import SideNavigation from '@/components/SideNavigation'
+import SideNavigation from '@/app/_components/SideNavigation'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
