@@ -3,6 +3,11 @@ import { Suspense } from 'react'
 import CabinsList from '@/app/_components/CabinsList'
 import Spinner from '@/app/_components/Spinner'
 
+// revalidate: 0 means that the page will be regenerated on every request
+// export const revalidate = 0
+
+export const revalidate = 3600 // 1 hour
+
 export const metadata = {
   title: 'Cabins Area',
   description: 'View all available cabins.',
