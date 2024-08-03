@@ -1,6 +1,7 @@
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from '@heroicons/react/24/solid'
 import { getCabin, getCabins } from '@/app/_lib/data-service'
 import Image from 'next/image'
+import TextExpander from '@/app/_components/TextExpander'
 
 export async function generateMetadata({ params }: { params: { cabinId: string } }) {
   const cabin = await getCabin(params.cabinId)
@@ -20,6 +21,7 @@ export async function generateStaticParams() {
 export default async function Page({ params }: { params: { cabinId: string } }) {
   const cabin = await getCabin(params.cabinId)
   const { id, name, maxCapacity, regularPrice, discount, image, description } = cabin
+  console.log(description)
 
   return (
     <div className="mx-auto mt-8 max-w-6xl">
@@ -33,7 +35,9 @@ export default async function Page({ params }: { params: { cabinId: string } }) 
             Cabin {name}
           </h3>
 
-          <p className="mb-10 text-lg text-primary-300">{description}</p>
+          <p className="mb-10 text-lg text-primary-300">
+            <TextExpander>{description}</TextExpander>
+          </p>
 
           <ul className="mb-7 flex flex-col gap-4">
             <li className="flex items-center gap-3">
