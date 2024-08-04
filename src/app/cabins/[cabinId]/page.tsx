@@ -21,7 +21,6 @@ export async function generateStaticParams() {
 export default async function Page({ params }: { params: { cabinId: string } }) {
   const cabin = await getCabin(params.cabinId)
   const { id, name, maxCapacity, regularPrice, discount, image, description } = cabin
-  console.log(description)
 
   return (
     <div className="mx-auto mt-8 max-w-6xl">

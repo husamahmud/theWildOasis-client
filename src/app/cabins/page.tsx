@@ -2,6 +2,7 @@ import { Suspense } from 'react'
 
 import CabinsList from '@/app/_components/CabinsList'
 import Spinner from '@/app/_components/Spinner'
+import Filter from '@/app/_components/Filter'
 
 // revalidate: 0 means that the page will be regenerated on every request
 // export const revalidate = 0
@@ -13,9 +14,19 @@ export const metadata = {
   description: 'View all available cabins.',
 }
 
-export default function Page() {
+export default function Page({
+  searchParams,
+  // only available in Page components
+  // page become a dynamic route when using this prop
+}: {
+  searchParams: { capacity: string }
+}) {
+  const filter = searchParams?.capacity ?? 'all'
+
   return (
     <div>
+      <Filter />
+
       <h1 className="mb-5 text-4xl font-medium text-accent-400">
         Our Luxury Cabins
       </h1>
@@ -27,8 +38,10 @@ export default function Page() {
         home. The perfect spot for a peaceful, calm vacation. Welcome to paradise.
       </p>
 
-      <Suspense fallback={<Spinner />}>
-        <CabinsList />
+      <Suspense key={filter} fallback={<Spinner />}>
+        {/* key prop is important to force re-render the component and show the spinner */}
+        {/* when the filter changes */}
+        <CabinsList filter={filter} />
       </Suspense>
     </div>
   )
