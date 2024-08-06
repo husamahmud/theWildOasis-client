@@ -1,8 +1,9 @@
 'use client'
 
 import { useReservation } from './ReservationContext'
+import Image from 'next/image'
 
-function ReservationForm({ cabin }: any) {
+function ReservationForm({ cabin, user }: any) {
   const { range } = useReservation()
   const { maxCapacity } = cabin
 
@@ -11,21 +12,18 @@ function ReservationForm({ cabin }: any) {
       <div className="flex items-center justify-between bg-primary-800 px-16 py-2 text-primary-300">
         <p>Logged in as</p>
 
-        {/* <div className='flex gap-4 items-center'>
-          <img
-            // Important to display google profile images
-            referrerPolicy='no-referrer'
-            className='h-8 rounded-full'
+        <div className="flex items-center gap-4">
+          <Image
+            referrerPolicy="no-referrer"
+            className="h-8 rounded-full"
+            width={32}
+            height={32}
             src={user.image}
             alt={user.name}
           />
           <p>{user.name}</p>
-        </div> */}
+        </div>
       </div>
-
-      <p>
-        {String(range.from)} to {String(range.to)}
-      </p>
 
       <form className="flex flex-col gap-5 bg-primary-900 px-16 py-10 text-lg">
         <div className="space-y-2">
