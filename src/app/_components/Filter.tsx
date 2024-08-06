@@ -2,38 +2,35 @@
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
-export default function Filter() {
+function Filter() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const pathname = usePathname()
 
-  const handleFilter = (filter: string) => {
-    const params = new URLSearchParams(searchParams.toString())
+  const activeFilter = searchParams.get('capacity') ?? 'all'
+
+  function handleFilter(filter: any) {
+    const params = new URLSearchParams(searchParams)
     params.set('capacity', filter)
     router.replace(`${pathname}?${params.toString()}`, { scroll: false })
   }
 
-  const activeFilter = searchParams.get('capacity') || 'all'
-
   return (
-    <div className="grid grid-cols-1 gap-4 pb-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <div className="flex border border-primary-800">
       <Button filter="all" handleFilter={handleFilter} activeFilter={activeFilter}>
-        All
+        All cabins
       </Button>
-
       <Button filter="small" handleFilter={handleFilter} activeFilter={activeFilter}>
-        Small
+        2&mdash;3 guests
       </Button>
-
       <Button
         filter="medium"
         handleFilter={handleFilter}
         activeFilter={activeFilter}>
-        Medium
+        4&mdash;7 guests
       </Button>
-
       <Button filter="large" handleFilter={handleFilter} activeFilter={activeFilter}>
-        Large
+        8&mdash;12 guests
       </Button>
     </div>
   )
@@ -42,9 +39,13 @@ export default function Filter() {
 function Button({ filter, handleFilter, activeFilter, children }: any) {
   return (
     <button
-      className={`rounded-lg p-2 text-sm text-accent-300 ${filter === activeFilter ? 'bg-primary-700' : 'bg-primary-900'}`}
+      className={`px-5 py-2 hover:bg-primary-700 ${
+        filter === activeFilter ? 'bg-primary-700 text-primary-50' : ''
+      }`}
       onClick={() => handleFilter(filter)}>
       {children}
     </button>
   )
 }
+
+export default Filter
