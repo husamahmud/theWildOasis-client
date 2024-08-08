@@ -1,6 +1,19 @@
 import NextAuth from 'next-auth'
 import Google from 'next-auth/providers/google'
 import { createGuest, getGuest } from '@/app/_lib/data-service'
+import { DefaultSession } from 'next-auth'
+
+declare module 'next-auth' {
+  interface User {
+    guestId?: string
+  }
+
+  interface Session {
+    user?: {
+      guestId?: string
+    } & DefaultSession['user']
+  }
+}
 
 const authConfig = {
   providers: [
@@ -29,10 +42,13 @@ const authConfig = {
         return false
       }
     },
-    async session({ session, user }: any) {
-      const guest = await getGuest(user.email)
-
-      session.user.guestId = guest.id
+    async session({ session, token }: any) {
+      if (session.user && token.email) {
+        const guest = await getGuest(token.email)
+        if (guest) {
+          session.user.guestId = guest.id
+        }
+      }
       return session
     },
   },
