@@ -1,5 +1,7 @@
 'use server'
 
+import { revalidatePath } from 'next/cache'
+
 import { auth, signIn, signOut } from '@/app/_lib/auth'
 import { supabase } from '@/app/_lib/supabase'
 
@@ -32,6 +34,9 @@ export async function updateGuest(formDate: any) {
     console.error(error)
     throw new Error('Guest could not be updated')
   }
+
+  //! Revalidate the profile page to show the updated data immediately
+  revalidatePath('/account/profile')
 }
 
 export async function signInAction() {
